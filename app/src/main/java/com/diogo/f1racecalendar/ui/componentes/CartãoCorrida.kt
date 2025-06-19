@@ -9,6 +9,8 @@ import androidx.compose.runtime.CompositionContext
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.diogo.f1racecalendar.data.modelo.Corrida
+import android.content.Intent
+import android.net.Uri
 
 @Composable
 fun CartaoCorrida(corrida: Corrida, context: Context) {

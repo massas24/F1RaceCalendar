@@ -9,6 +9,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import com.diogo.f1racecalendar.data.repositorio.RepositorisDeCorridas
 import com.diogo.f1racecalendar.ui.componentes.CartaoCorrida
@@ -16,23 +17,24 @@ import com.diogo.f1racecalendar.ui.componentes.CartaoCorrida
 @Composable
 fun HomeScreen() {
     val listaCorridas = remember { RepositorisDeCorridas.buscarCorridas() }
+    val contexto = LocalContext.current
 
-    Column(modifier = Modifier
-        .fillMaxSize()
-        .padding(16.dp)) {
+    LazyColumn(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(16.dp)
+    ) {
+        item {
+            Text(
+                text = "Calendário F1 2025",
+                style = MaterialTheme.typography.headlineMedium,
+                modifier = Modifier.padding(bottom = 16.dp)
+            )
+        }
 
-        Text(
-            text = "Calendário F1 2025",
-            style = MaterialTheme.typography.headlineMedium,
-            modifier = Modifier.padding(bottom = 16.dp)
-        )
-
-        LazyColumn {
-            items(listaCorridas) { corrida ->
-                CartaoCorrida(corrida = corrida) {
-                    // Adicionar detalhes
-                }
-            }
+        items(listaCorridas) { corrida ->
+            CartaoCorrida(corrida = corrida, context = contexto)
         }
     }
 }
+
