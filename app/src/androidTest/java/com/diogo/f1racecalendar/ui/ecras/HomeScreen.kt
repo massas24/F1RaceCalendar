@@ -13,5 +13,18 @@ import androidx.compose.ui.unit.dp
 import com.diogo.f1racecalendar.data.repositorio.RepositorisDeCorridas
 import com.diogo.f1racecalendar.ui.componentes.CartaoCorrida
 
-class HomeScreen {
+@Composable
+fun HomeScreen(){
+    val listarCorridas = remember { RepositorisDeCorridas.buscarCorridas() }
+
+    Column (modifier = Modifier
+        .fillMaxSize()
+        .padding(16.dp)) {
+
+        Text(
+            text = "Calendário F1 2025",
+            style = MaterialTheme.typography.headlineMedium
+            modifier = Modifier.padding(bottom = 16.dp)
+        )
+    }
 }
