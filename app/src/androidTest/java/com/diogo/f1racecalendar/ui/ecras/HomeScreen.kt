@@ -14,17 +14,25 @@ import com.diogo.f1racecalendar.data.repositorio.RepositorisDeCorridas
 import com.diogo.f1racecalendar.ui.componentes.CartaoCorrida
 
 @Composable
-fun HomeScreen(){
-    val listarCorridas = remember { RepositorisDeCorridas.buscarCorridas() }
+fun HomeScreen() {
+    val listaCorridas = remember { RepositorisDeCorridas.buscarCorridas() }
 
-    Column (modifier = Modifier
+    Column(modifier = Modifier
         .fillMaxSize()
         .padding(16.dp)) {
 
         Text(
             text = "Calendário F1 2025",
-            style = MaterialTheme.typography.headlineMedium
+            style = MaterialTheme.typography.headlineMedium,
             modifier = Modifier.padding(bottom = 16.dp)
         )
+
+        LazyColumn {
+            items(listaCorridas) { corrida ->
+                CartaoCorrida(corrida = corrida) {
+                    // Adicionar detalhes
+                }
+            }
+        }
     }
 }
