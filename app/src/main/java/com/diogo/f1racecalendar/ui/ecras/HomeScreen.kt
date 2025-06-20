@@ -34,7 +34,11 @@ fun HomeScreen(navController: NavController) {
         }
 
         items(listaCorridas) { corrida ->
-            CartaoCorrida(corrida = corrida, context = contexto)
+            CartaoCorrida(corrida = corrida, context = contexto){
+                navController.navigate(
+                    "detalhes/${corrida.nome}/${corrida.data}/${corrida.hora}/${corrida.localizacao}/${corrida.pais}"
+                )
+            }
         }
     }
 }
