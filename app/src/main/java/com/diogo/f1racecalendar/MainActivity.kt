@@ -39,6 +39,7 @@ class MainActivity : ComponentActivity() {
                         )
                     ) { backStackEntry ->
                         DetalhesCorridaScreen(
+                            navController = navController,
                             nome = backStackEntry.arguments?.getString("nome") ?: "",
                             data = backStackEntry.arguments?.getString("data") ?: "",
                             hora = backStackEntry.arguments?.getString("hora") ?: "",

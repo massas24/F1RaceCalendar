@@ -13,12 +13,23 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.IconButton
+import androidx.navigation.NavController
 import java.net.URLDecoder
 import java.nio.charset.StandardCharsets
+import androidx.compose.foundation.layout.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material3.*
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun DetalhesCorridaScreen(
+    navController: NavController,
     nome: String,
     data: String,
     hora: String,
@@ -32,7 +43,13 @@ fun DetalhesCorridaScreen(
     val paisDecoded = URLDecoder.decode(pais, StandardCharsets.UTF_8.toString())
     Scaffold(
         topBar = {
-            TopAppBar(title = { Text("Detalhes da Corrida") })
+            TopAppBar(title = { Text("Detalhes da Corrida") },
+                navigationIcon = {
+                    IconButton(onClick = { navController.popBackStack() }) {
+                        Icon(Icons.Default.ArrowBack, contentDescription = "Voltar")
+                    }
+                }
+            )
         }
     ) { paddingValues ->
         Column(
