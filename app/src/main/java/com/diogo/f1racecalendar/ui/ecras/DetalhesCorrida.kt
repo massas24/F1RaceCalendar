@@ -5,3 +5,17 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+
+fun DetalhesCorridaScreen(
+    nome: String,
+    data: String,
+    hora: String,
+    localizacao: String,
+    pais: String
+){
+    Scaffold(
+        topBar = {
+            TopAppBar(title = { Text("Detalhes da Corrida")})
+        }
+    )
+}
