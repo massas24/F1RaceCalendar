@@ -11,11 +11,12 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import com.diogo.f1racecalendar.data.repositorio.RepositorisDeCorridas
 import com.diogo.f1racecalendar.ui.componentes.CartaoCorrida
 
 @Composable
-fun HomeScreen() {
+fun HomeScreen(navController: NavController) {
     val listaCorridas = remember { RepositorisDeCorridas.buscarCorridas() }
     val contexto = LocalContext.current
 
