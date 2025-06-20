@@ -14,6 +14,8 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.diogo.f1racecalendar.data.repositorio.RepositorisDeCorridas
 import com.diogo.f1racecalendar.ui.componentes.CartaoCorrida
+import java.net.URLEncoder
+import java.nio.charset.StandardCharsets
 
 @Composable
 fun HomeScreen(navController: NavController) {
@@ -34,9 +36,15 @@ fun HomeScreen(navController: NavController) {
         }
 
         items(listaCorridas) { corrida ->
-            CartaoCorrida(corrida = corrida, context = contexto){
+            CartaoCorrida(corrida = corrida, context = contexto) {
+                val nomeEncoded = URLEncoder.encode(corrida.nome, StandardCharsets.UTF_8.toString())
+                val dataEncoded = URLEncoder.encode(corrida.data, StandardCharsets.UTF_8.toString())
+                val horaEncoded = URLEncoder.encode(corrida.hora, StandardCharsets.UTF_8.toString())
+                val localizacaoEncoded = URLEncoder.encode(corrida.localizacao, StandardCharsets.UTF_8.toString())
+                val paisEncoded = URLEncoder.encode(corrida.pais, StandardCharsets.UTF_8.toString())
+
                 navController.navigate(
-                    "detalhes/${corrida.nome}/${corrida.data}/${corrida.hora}/${corrida.localizacao}/${corrida.pais}"
+                    "detalhes/$nomeEncoded/$dataEncoded/$horaEncoded/$localizacaoEncoded/$paisEncoded"
                 )
             }
         }

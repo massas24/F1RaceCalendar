@@ -13,6 +13,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.material3.ExperimentalMaterial3Api
+import java.net.URLDecoder
+import java.nio.charset.StandardCharsets
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -23,6 +25,11 @@ fun DetalhesCorridaScreen(
     localizacao: String,
     pais: String
 ) {
+    val nomeDecoded = URLDecoder.decode(nome, StandardCharsets.UTF_8.toString())
+    val dataDecoded = URLDecoder.decode(data, StandardCharsets.UTF_8.toString())
+    val horaDecoded = URLDecoder.decode(hora, StandardCharsets.UTF_8.toString())
+    val localizacaoDecoded = URLDecoder.decode(localizacao, StandardCharsets.UTF_8.toString())
+    val paisDecoded = URLDecoder.decode(pais, StandardCharsets.UTF_8.toString())
     Scaffold(
         topBar = {
             TopAppBar(title = { Text("Detalhes da Corrida") })
@@ -36,10 +43,10 @@ fun DetalhesCorridaScreen(
         ) {
             Text(text = nome, style = MaterialTheme.typography.headlineMedium)
             Spacer(modifier = Modifier.height(12.dp))
-            Text(text = "📅 Data: $data")
-            Text(text = "🕒 Hora: $hora")
-            Text(text = "📍 Local: $localizacao")
-            Text(text = "🏁 País: $pais")
+            Text(text = "📅 Data: $dataDecoded")
+            Text(text = "🕒 Hora: $horaDecoded")
+            Text(text = "📍 Local: $localizacaoDecoded")
+            Text(text = "🏁 País: $paisDecoded")
         }
     }
 }
