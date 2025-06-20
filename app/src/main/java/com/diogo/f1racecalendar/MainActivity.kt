@@ -6,13 +6,14 @@ import androidx.activity.compose.setContent
 import androidx.compose.material3.*
 import androidx.navigation.NavType
 import androidx.navigation.compose.*
-import androidx.navigation.compose.navArgument
+
 import com.diogo.f1racecalendar.ui.ecras.DetalhesCorridaScreen
 import com.diogo.f1racecalendar.ui.ecras.HomeScreen
 import com.diogo.f1racecalendar.ui.theme.F1RaceCalendarTheme
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 
 
 class MainActivity : ComponentActivity() {
