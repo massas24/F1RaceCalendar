@@ -25,7 +25,12 @@ fun DetalhesCorridaScreen(
                 .padding(16.dp)
                 .fillMaxSize()
         ) {
-            
+            Text(text = nome, style = MaterialTheme.typography.headlineMedium)
+            Spacer(modifier = Modifier.height(12.dp))
+            Text(text = "📅 Data: $data")
+            Text(text = "🕒 Hora: $hora")
+            Text(text = "📍 Local: $localizacao")
+            Text(text = "🏁 País: $pais")
         }
     }
 }
