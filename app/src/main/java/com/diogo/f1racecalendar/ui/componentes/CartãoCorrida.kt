@@ -13,25 +13,23 @@ import android.content.Intent
 import android.net.Uri
 
 @Composable
-fun CartaoCorrida(corrida: Corrida, context: Context) {
+fun CartaoCorrida(corrida: Corrida, context: Context, aoClicar: () -> Unit) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
             .padding(vertical = 8.dp)
-            .clickable { abrirMapa(context, corrida.mapaUrl) },
+            .clickable { aoClicar() },
         elevation = CardDefaults.cardElevation(defaultElevation = 4.dp)
     ) {
         Column(modifier = Modifier.padding(16.dp)) {
-            Text(
-                text = corrida.nome,
-                style = MaterialTheme.typography.titleMedium
-            )
+            Text(text = corrida.nome, style = MaterialTheme.typography.titleMedium)
             Spacer(modifier = Modifier.height(4.dp))
             Text(text = "Data: ${corrida.data} às ${corrida.hora}")
             Text(text = "Local: ${corrida.localizacao}, ${corrida.pais}")
         }
     }
 }
+
 
 private fun abrirMapa(context: Context, url: String) {
     try {
