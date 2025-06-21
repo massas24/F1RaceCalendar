@@ -76,6 +76,35 @@ fun DetalhesCorridaScreen(
         }
     }
 }
+fun adicionarEventoAoCalendario(context: Context, titulo: String, data: String, hora: String, local: String) {
+    try {
+        val partesData = data.split("/")
+        val partesHora = hora.split(":")
+
+        if (partesData.size == 3 && partesHora.size == 2) {
+            val dia = partesData[0].toInt()
+            val mes = partesData[1].toInt() - 1
+            val ano = partesData[2].toInt()
+
+            val horaInt = partesHora[0].toInt()
+            val minutoInt = partesHora[1].toInt()
+
+            val inicio = Calendar.getInstance()
+            inicio.set(ano, mes, dia, horaInt, minutoInt)
+
+            val intent = Intent(Intent.ACTION_INSERT).apply {
+                data = CalendarContract.Events.CONTENT_URI
+                putExtra(CalendarContract.Events.TITLE, titulo)
+                putExtra(CalendarContract.Events.EVENT_LOCATION, local)
+                putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME, inicio.timeInMillis)
+                putExtra(CalendarContract.EXTRA_EVENT_END_TIME, inicio.timeInMillis + 2 * 60 * 60 * 1000) // 2h
+            }
+
+            context.startActivity(intent)
+        }
+    } catch (e: Exception) {
+        e.printStackTrace()
+    }
 
 
 fun abrirMapa(context: Context, localizacao: String, pais: String) {
