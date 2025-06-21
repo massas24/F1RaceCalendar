@@ -70,6 +70,19 @@ fun DetalhesCorridaScreen(
             Text(text = "🕒 Hora: $horaDecoded")
             Text(text = "📍 Local: $localizacaoDecoded")
             Text(text = "🏁 País: $paisDecoded")
+            Spacer(modifier = Modifier.height(24.dp))
+
+            Button
         }
+    }
+}
+
+
+fun abrirMapa(context: Context, localizacao: String, pais: String) {
+    val uri = Uri.parse("geo:0,0?q=${Uri.encode("$localizacao, $pais")}")
+    val intent = Intent(Intent.ACTION_VIEW, uri)
+    intent.setPackage("com.google.android.apps.maps")
+    if (intent.resolveActivity(context.packageManager) != null) {
+        context.startActivity(intent)
     }
 }
