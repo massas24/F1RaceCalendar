@@ -30,6 +30,7 @@ import android.provider.CalendarContract
 import android.net.Uri
 import android.content.Context
 import androidx.compose.ui.platform.LocalContext
+import java.util.Calendar
 
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -48,6 +49,9 @@ fun DetalhesCorridaScreen(
     val horaDecoded = URLDecoder.decode(hora, StandardCharsets.UTF_8.toString())
     val localizacaoDecoded = URLDecoder.decode(localizacao, StandardCharsets.UTF_8.toString())
     val paisDecoded = URLDecoder.decode(pais, StandardCharsets.UTF_8.toString())
+    val mapaUrlDecoded = URLDecoder.decode(mapaUrl, StandardCharsets.UTF_8.toString())
+
+    val context = LocalContext.current
     Scaffold(
         topBar = {
             TopAppBar(title = { Text("Detalhes da Corrida") },
@@ -85,7 +89,7 @@ fun DetalhesCorridaScreen(
 
             //Botao ver no mapa
             Button(onClick = {
-                abrirMapa(context, nomeDecoded, paisDecoded)
+                abrirMapa(context, mapaUrlDecoded)
             }) {
                 Text("Ver no mapa")
             }
@@ -113,7 +117,10 @@ fun adicionarEventoAoCalendario(context: Context, titulo: String, data: String, 
                 putExtra(CalendarContract.Events.TITLE, titulo)
                 putExtra(CalendarContract.Events.EVENT_LOCATION, local)
                 putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME, inicio.timeInMillis)
-                putExtra(CalendarContract.EXTRA_EVENT_END_TIME, inicio.timeInMillis + 2 * 60 * 60 * 1000) // 2h
+                putExtra(
+                    CalendarContract.EXTRA_EVENT_END_TIME,
+                    inicio.timeInMillis + 2 * 60 * 60 * 1000
+                ) // 2h
             }
 
             context.startActivity(intent)
@@ -121,13 +128,15 @@ fun adicionarEventoAoCalendario(context: Context, titulo: String, data: String, 
     } catch (e: Exception) {
         e.printStackTrace()
     }
+}
 
 
-fun abrirMapa(context: Context, localizacao: String, pais: String) {
-    val uri = Uri.parse("geo:0,0?q=${Uri.encode("$localizacao, $pais")}")
-    val intent = Intent(Intent.ACTION_VIEW, uri)
-    intent.setPackage("com.google.android.apps.maps")
-    if (intent.resolveActivity(context.packageManager) != null) {
+fun abrirMapa(context: Context, url: String) {
+    try {
+        val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
         context.startActivity(intent)
+    } catch (e: Exception) {
+        e.printStackTrace()
     }
 }
+
