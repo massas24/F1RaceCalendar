@@ -72,13 +72,22 @@ fun DetalhesCorridaScreen(
             Text(text = "🏁 País: $paisDecoded")
             Spacer(modifier = Modifier.height(24.dp))
 
+
+            //butao Adicionar Calendario
             Button(onClick = {
                 adicionarEventoAoCalendario(context, nomeDecoded, dataDecoded, horaDecoded, localizacaoDecoded)
             }) {
                 Text("Adicionar ao Calendário")
             }
 
-            
+            Spacer(modifier = Modifier.height(12.dp))
+
+            //Botao ver no mapa
+            Button(onClick = {
+                abrirMapa(context, nomeDecoded, paisDecoded)
+            }) {
+                Text("Ver no mapa")
+            }
         }
     }
 }
