@@ -29,7 +29,7 @@ class MainActivity : ComponentActivity() {
                     }
 
                     composable(
-                        route = "detalhes/{nome}/{data}/{hora}/{localizacao}/{pais}",
+                        route = "detalhes/{nome}/{data}/{hora}/{localizacao}/{pais}/{mapaUrl}",
                         arguments = listOf(
                             navArgument("nome") { type = NavType.StringType },
                             navArgument("data") { type = NavType.StringType },
@@ -46,7 +46,7 @@ class MainActivity : ComponentActivity() {
                             hora = backStackEntry.arguments?.getString("hora") ?: "",
                             localizacao = backStackEntry.arguments?.getString("localizacao") ?: "",
                             pais = backStackEntry.arguments?.getString("pais") ?: "",
-                            mapaUrl = backStackEntry.arguments?.getString("mapaUrl") ?: "",
+                            mapaUrl = backStackEntry.arguments?.getString("mapaUrl") ?: ""
                         )
                     }
                 }

@@ -113,7 +113,7 @@ fun adicionarEventoAoCalendario(context: Context, titulo: String, data: String, 
             inicio.set(ano, mes, dia, horaInt, minutoInt)
 
             val intent = Intent(Intent.ACTION_INSERT).apply {
-                data = CalendarContract.Events.CONTENT_URI
+                setData(CalendarContract.Events.CONTENT_URI)
                 putExtra(CalendarContract.Events.TITLE, titulo)
                 putExtra(CalendarContract.Events.EVENT_LOCATION, local)
                 putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME, inicio.timeInMillis)
