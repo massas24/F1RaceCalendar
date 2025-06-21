@@ -40,7 +40,8 @@ fun DetalhesCorridaScreen(
     data: String,
     hora: String,
     localizacao: String,
-    pais: String
+    pais: String,
+    mapaUrl: String
 ) {
     val nomeDecoded = URLDecoder.decode(nome, StandardCharsets.UTF_8.toString())
     val dataDecoded = URLDecoder.decode(data, StandardCharsets.UTF_8.toString())

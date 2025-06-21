@@ -35,7 +35,8 @@ class MainActivity : ComponentActivity() {
                             navArgument("data") { type = NavType.StringType },
                             navArgument("hora") { type = NavType.StringType },
                             navArgument("localizacao") { type = NavType.StringType },
-                            navArgument("pais") { type = NavType.StringType }
+                            navArgument("pais") { type = NavType.StringType },
+                            navArgument("mapaUrl"){type = NavType.StringType}
                         )
                     ) { backStackEntry ->
                         DetalhesCorridaScreen(
@@ -44,7 +45,8 @@ class MainActivity : ComponentActivity() {
                             data = backStackEntry.arguments?.getString("data") ?: "",
                             hora = backStackEntry.arguments?.getString("hora") ?: "",
                             localizacao = backStackEntry.arguments?.getString("localizacao") ?: "",
-                            pais = backStackEntry.arguments?.getString("pais") ?: ""
+                            pais = backStackEntry.arguments?.getString("pais") ?: "",
+                            mapaUrl = backStackEntry.arguments?.getString("mapaUrl") ?: "",
                         )
                     }
                 }

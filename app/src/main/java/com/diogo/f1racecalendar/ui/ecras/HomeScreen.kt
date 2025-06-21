@@ -14,6 +14,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.diogo.f1racecalendar.data.repositorio.RepositorisDeCorridas
 import com.diogo.f1racecalendar.ui.componentes.CartaoCorrida
+import java.net.URLDecoder
 import java.net.URLEncoder
 import java.nio.charset.StandardCharsets
 
@@ -42,9 +43,11 @@ fun HomeScreen(navController: NavController) {
                 val horaEncoded = URLEncoder.encode(corrida.hora, StandardCharsets.UTF_8.toString())
                 val localizacaoEncoded = URLEncoder.encode(corrida.localizacao, StandardCharsets.UTF_8.toString())
                 val paisEncoded = URLEncoder.encode(corrida.pais, StandardCharsets.UTF_8.toString())
+                val mapaUrlDecoded = URLDecoder.decode(corrida.mapaUrl, StandardCharsets.UTF_8.toString())
+
 
                 navController.navigate(
-                    "detalhes/$nomeEncoded/$dataEncoded/$horaEncoded/$localizacaoEncoded/$paisEncoded"
+                    "detalhes/$nomeEncoded/$dataEncoded/$horaEncoded/$localizacaoEncoded/$paisEncoded/$mapaUrlDecoded"
                 )
             }
         }
