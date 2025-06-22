@@ -2,7 +2,7 @@ package com.diogo.f1racecalendar.ui.componentes
 
 import android.content.Context
 import android.content.Intent
-import android.net.Uri
+import android.net.Uri // Manter se for usar Uri em algum outro lugar do Card
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -36,13 +36,13 @@ fun CartaoCorrida(corrida: Corrida, context: Context, aoClicar: () -> Unit) {
     }
 }
 
-
-private fun abrirMapa(context: Context, url: String) {
-    try {
-        val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
-        context.startActivity(intent)
-    } catch (e: Exception) {
-        e.printStackTrace()
-        //mensagem de erro
-    }
-}
+// REMOVIDA: A função abrirMapa privada não está a ser utilizada aqui.
+// private fun abrirMapa(context: Context, url: String) {
+//     try {
+//         val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+//         context.startActivity(intent)
+//     } catch (e: Exception) {
+//         e.printStackTrace()
+//         //mensagem de erro
+//     }
+// }
