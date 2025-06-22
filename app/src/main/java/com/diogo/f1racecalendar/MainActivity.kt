@@ -4,6 +4,9 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.material3.*
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavType
 import androidx.navigation.compose.*
 
@@ -14,11 +17,38 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
+import com.diogo.f1racecalendar.data.preferences.ModoEscuro
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.launch
 
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        val temaCor = ModoEscuro(applicationContext)
+
+        lifecycleScope.launch {
+            val eModoEscuro = temaCor.modoEscuroFlow.first()
+
+            setContent {
+                var modoEscuroAtivado by remember { mutableStateOf(eModoEscuro) }
+
+                F1RaceCalendarTheme (darkTheme = modoEscuroAtivado){
+                    val navController = rememberNavController()
+
+                    NavHost(navController = navController, startDestination = "home"){
+                        composable ("home"){
+                            HomeScreen(
+                                navController = navController,
+                                
+                            )
+                        }
+                    }
+                }
+            }
+        }
+
         setContent {
             F1RaceCalendarTheme {
                 val navController = rememberNavController()
