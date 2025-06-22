@@ -37,7 +37,7 @@ fun HomeScreen(navController: NavController, isDarkModeEnabled: Boolean, onToggl
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
             Text(
-                text = "Calendário F1 2025",
+                text = "Planeador Pit Lane",
                 style = MaterialTheme.typography.headlineMedium
             )
             Switch(
