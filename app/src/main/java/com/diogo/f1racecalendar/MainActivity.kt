@@ -38,7 +38,7 @@ class MainActivity : ComponentActivity() {
                     composable("home") {
                         HomeScreen(
                             navController = navController,
-                            darkMode = modoEscuroAtivado,
+                            isDarkModeEnabled = modoEscuroAtivado, // Corrected parameter name and type
                             onToggleTheme = { ativado ->
                                 modoEscuroAtivado = ativado
                                 lifecycleScope.launch {
